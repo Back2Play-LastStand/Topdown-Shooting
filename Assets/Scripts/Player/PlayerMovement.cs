@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
 
     public void Move(Vector2 inputVec)
     {
-        Vector3 nextVec = inputVec * m_speed * Time.deltaTime;
-        m_rigid.MovePosition(nextVec);
+        Vector3 moveVec = inputVec * m_speed * Time.deltaTime;
+        transform.position += new Vector3(moveVec.x, 0, moveVec.y);
     }
 
     public void MoveTo(Vector3 des)
