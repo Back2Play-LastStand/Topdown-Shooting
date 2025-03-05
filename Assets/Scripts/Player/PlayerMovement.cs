@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
         m_rigid = GetComponent<Rigidbody>();
     }
 
-    public void Move(Vector3 inputVec)
+    public void Move(Vector2 inputVec)
     {
         Vector3 nextVec = inputVec * m_speed * Time.deltaTime;
         m_rigid.MovePosition(nextVec);
