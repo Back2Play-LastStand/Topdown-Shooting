@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerInput m_playerInput;
+    private PlayerMovement m_playerMovement;
+
+    void Awake()
     {
-        
+        m_playerInput = GetComponent<PlayerInput>();
+        m_playerMovement = GetComponent<PlayerMovement>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        m_playerMovement.Move(m_playerInput.InputVec);
+        m_playerMovement.LookAtMouse(m_playerInput.MousePos);
     }
 }
