@@ -20,20 +20,10 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement, IPlayerAnim
 
     public void Move(Vector2 inputVec)
     {
-        Ray ray = Camera.main.ScreenPointToRay(inputVec);
-        Plane groundPlane = new Plane(Vector3.up, transform.position);
+        Vector3 moveVec = new Vector3(inputVec.x, 0, inputVec.y);
+        moveVec = transform.TransformDirection(moveVec);
 
-        if (groundPlane.Raycast(ray, out float enter))
-        {
-            Vector3 hitPoint = ray.GetPoint(enter);
-            Vector3 mouseDirection = (hitPoint - transform.position).normalized;
-
-            mouseDirection.y = 0;
-            Vector3 right = Vector3.Cross(Vector3.up, mouseDirection);
-            Vector3 moveVec = (mouseDirection * inputVec.y + right * inputVec.x).normalized;
-
-            transform.position += moveVec * m_speed * Time.deltaTime;
-        }
+        transform.position += moveVec * m_speed * Time.deltaTime;
     }
 
     public void MoveTo(Vector3 des)
@@ -44,7 +34,7 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement, IPlayerAnim
     public void LookAtMouse(Vector2 inputMousePos)
     {
         Ray ray = Camera.main.ScreenPointToRay(inputMousePos);
-        Plane groundPlane = new Plane(Vector3.up, transform.position);  
+        Plane groundPlane = new Plane(Vector3.up, transform.position);
 
         if (groundPlane.Raycast(ray, out float enter))
         {
