@@ -16,8 +16,10 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
 
     public void Move(Vector2 inputVec)
     {
-        Vector3 moveVec = inputVec * m_speed * Time.deltaTime;
-        transform.position += new Vector3(moveVec.x, 0, moveVec.y);
+        Vector3 moveVec = new Vector3(inputVec.x, 0, inputVec.y);
+        moveVec = transform.TransformDirection(moveVec);
+
+        transform.position += moveVec * m_speed * Time.deltaTime;
     }
 
     public void MoveTo(Vector3 des)
@@ -28,13 +30,20 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement
     public void LookAtMouse(Vector2 inputMousePos)
     {
         Ray ray = Camera.main.ScreenPointToRay(inputMousePos);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        Plane groundPlane = new Plane(Vector3.up, transform.position);  
 
         if (groundPlane.Raycast(ray, out float enter))
         {
             Vector3 hitPoint = ray.GetPoint(enter);
-            Vector3 currentPoint = new Vector3(hitPoint.x, transform.position.y, hitPoint.z);
-            transform.LookAt(currentPoint);
+            Vector3 direction = (hitPoint - transform.position).normalized;
+
+            direction.y = 0;
+
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = targetRotation;
+            }
         }
     }
 }
