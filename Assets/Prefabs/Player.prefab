@@ -224,6 +224,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 209483403793263054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &531583841919808713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7934667575240021668}
+  m_Layer: 0
+  m_Name: Projectile Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7934667575240021668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531583841919808713}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0, z: 0.481}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5442299012230909963}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &654180781231909963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1253,7 @@ GameObject:
   - component: {fileID: 7094055693819310427}
   - component: {fileID: 4816016654023457740}
   - component: {fileID: 2041848747721381222}
+  - component: {fileID: 459148705561184014}
   - component: {fileID: 958837063034802523}
   - component: {fileID: 8992333435908414309}
   m_Layer: 0
@@ -1404,6 +1436,21 @@ MonoBehaviour:
   m_aimCamera: {fileID: 1161060488626777292}
   m_minCameraDistance: 1.5
   m_maxCameraDistance: 3
+--- !u!114 &459148705561184014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353890366430669099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed69f144a960f741af3558efeb43651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bulletPrefab: {fileID: 6975525050668928423, guid: dd7900f3b69dde04dac36f5c21b5dfe6, type: 3}
+  m_firingPos: {fileID: 7934667575240021668}
+  m_delay: 2
 --- !u!114 &958837063034802523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2528,7 +2575,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4792254929554238, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7934667575240021668}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04e8ca980b4beed48979d827d8250fb4, type: 3}
 --- !u!4 &5442299012230909963 stripped
