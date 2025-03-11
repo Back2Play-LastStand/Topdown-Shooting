@@ -6,7 +6,7 @@ public class PlayerAim : MonoBehaviour
 {
     [SerializeField] private Transform m_aimCamera;
     [SerializeField] private float m_minCameraDistance = 1.5f;
-    [SerializeField] private float m_maxCameraDistance = 4f;
+    [SerializeField] private float m_maxCameraDistance = 3f;
 
     public void AimTowardsMouse(Vector2 inputMousePos)
     {
