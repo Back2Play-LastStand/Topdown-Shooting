@@ -25,13 +25,13 @@ namespace Protocol {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg5Qcm90b2NvbC5wcm90bxIIUHJvdG9jb2wiHQoJUkVRX0VOVEVSEhAKCHBs",
-            "YXllcklkGAEgASgEIh0KCVJFU19FTlRFUhIQCghwbGF5ZXJJZBgBIAEoBGIG",
-            "cHJvdG8z"));
+            "YXllcklkGAEgASgEIi4KCVJFU19FTlRFUhIQCghwbGF5ZXJJZBgBIAEoBBIP",
+            "CgdzdWNjZXNzGAIgASgIYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.REQ_ENTER), global::Protocol.REQ_ENTER.Parser, new[]{ "PlayerId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_ENTER), global::Protocol.RES_ENTER.Parser, new[]{ "PlayerId" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_ENTER), global::Protocol.RES_ENTER.Parser, new[]{ "PlayerId", "Success" }, null, null, null, null)
           }));
     }
     #endregion
@@ -262,6 +262,7 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public RES_ENTER(RES_ENTER other) : this() {
       playerId_ = other.playerId_;
+      success_ = other.success_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -283,6 +284,18 @@ namespace Protocol {
       }
     }
 
+    /// <summary>Field number for the "success" field.</summary>
+    public const int SuccessFieldNumber = 2;
+    private bool success_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Success {
+      get { return success_; }
+      set {
+        success_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -299,6 +312,7 @@ namespace Protocol {
         return true;
       }
       if (PlayerId != other.PlayerId) return false;
+      if (Success != other.Success) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -307,6 +321,7 @@ namespace Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (PlayerId != 0UL) hash ^= PlayerId.GetHashCode();
+      if (Success != false) hash ^= Success.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -329,6 +344,10 @@ namespace Protocol {
         output.WriteRawTag(8);
         output.WriteUInt64(PlayerId);
       }
+      if (Success != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Success);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -343,6 +362,10 @@ namespace Protocol {
         output.WriteRawTag(8);
         output.WriteUInt64(PlayerId);
       }
+      if (Success != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Success);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -355,6 +378,9 @@ namespace Protocol {
       int size = 0;
       if (PlayerId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(PlayerId);
+      }
+      if (Success != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -370,6 +396,9 @@ namespace Protocol {
       }
       if (other.PlayerId != 0UL) {
         PlayerId = other.PlayerId;
+      }
+      if (other.Success != false) {
+        Success = other.Success;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -390,6 +419,10 @@ namespace Protocol {
             PlayerId = input.ReadUInt64();
             break;
           }
+          case 16: {
+            Success = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -407,6 +440,10 @@ namespace Protocol {
             break;
           case 8: {
             PlayerId = input.ReadUInt64();
+            break;
+          }
+          case 16: {
+            Success = input.ReadBool();
             break;
           }
         }
