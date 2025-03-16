@@ -38,9 +38,7 @@ namespace ServerCore
 
         public override void OnRecvPacket(ArraySegment<byte> buffer)
         {
-            Session session = this;
-
-            var protocolId = BitConverter.ToUInt16(session._recvArgs.Buffer, 2);
+            Managers.Packet.OnRecvPacket(this, buffer);
         }
 
         public override void OnSend(int numOfBytes)
