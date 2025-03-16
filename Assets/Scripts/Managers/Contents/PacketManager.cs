@@ -8,6 +8,7 @@ using UnityEngine;
 public class PacketManager : MonoBehaviour
 {
     Dictionary<ushort, Action<PacketSession, ArraySegment<byte>, ushort>> _onRecv = new Dictionary<ushort, Action<PacketSession, ArraySegment<byte>, ushort>>();
+    Dictionary<ushort, Action<PacketSession, IMessage>> _handler = new Dictionary<ushort, Action<PacketSession, IMessage>>();
 
     public void Register()
     {
@@ -26,8 +27,14 @@ public class PacketManager : MonoBehaviour
         if(_onRecv.TryGetValue(id, out action))
             action.Invoke(session, buffer, id);
     }
+
+    public void MakePacket<T>(PacketSession session, ArraySegment<byte> buffer, ushort id) where T : IMessage, new()
     {
-        
+        T pkt = new T();
+        pkt.MergeFrom(buffer.Array, buffer.Offset + 4, buffer.Count - 4);
+        Action<PacketSession, IMessage> action = null;
+        if (_handler.TryGetValue(id, out action))
+            action.Invoke(session, pkt);
     }
 
     // Update is called once per frame
