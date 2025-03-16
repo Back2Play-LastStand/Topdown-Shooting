@@ -9,8 +9,10 @@ public class Managers : MonoBehaviour
 
     #region Contents
     NetworkManager _network = new();
+    PacketManager _packet = new();
 
     public static NetworkManager Network { get { return Instance._network; } }
+    public static PacketManager Packet { get {  return Instance._packet; } }
     #endregion
 
     public static void Init()
