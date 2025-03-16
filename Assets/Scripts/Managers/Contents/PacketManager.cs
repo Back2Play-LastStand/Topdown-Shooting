@@ -37,9 +37,11 @@ public class PacketManager : MonoBehaviour
             action.Invoke(session, pkt);
     }
 
-    // Update is called once per frame
-    void Update()
+    public Action<PacketSession, IMessage> GetPacketHandler(ushort id)
     {
-        
+        Action<PacketSession, IMessage> action = null;
+        if (_handler.TryGetValue(id, out action))
+            return action;
+        return null;
     }
 }
