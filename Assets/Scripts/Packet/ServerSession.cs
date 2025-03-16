@@ -17,10 +17,13 @@ namespace ServerCore
             if (endPoint == null)
                 return;
 
+            Protocol.REQ_ENTER packet = new();
+            Send(packet, (ushort)PacketId.PKT_REQ_ENTER);
+
             Debug.Log($"OnConnected : {endPoint}");
         }
 
-        public void Send(IMessage packet, int id)
+        public void Send(IMessage packet, ushort id)
         {
             ushort size = (ushort)packet.CalculateSize();
             byte[] sendBuffer = new byte[size + 4];
