@@ -5,6 +5,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PacketId : ushort
+{
+    PKT_REQ_ENTER = 1000,
+    PKT_RES_ENTER = 1001,
+    PKT_REQ_ENTER_ROOM = 1002,
+    PKT_RES_ENTER_ROOM = 1003,
+    PKT_REQ_LEAVE = 1004,
+    PKT_RES_LEAVE = 1005,
+    PKT_RES_SPAWN = 1006,
+    PKT_RES_SPAWN_ALL = 1007,
+    PKT_RES_DESPAWN = 1008,
+}
+
 public class PacketManager : MonoBehaviour
 {
     Dictionary<ushort, Action<PacketSession, ArraySegment<byte>, ushort>> _onRecv = new Dictionary<ushort, Action<PacketSession, ArraySegment<byte>, ushort>>();
