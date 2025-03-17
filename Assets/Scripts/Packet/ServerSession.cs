@@ -17,9 +17,6 @@ namespace ServerCore
             if (endPoint == null)
                 return;
 
-            Protocol.REQ_ENTER packet = new();
-            Send(packet, (ushort)PacketId.PKT_REQ_ENTER);
-
             Debug.Log($"OnConnected : {endPoint}");
         }
 
