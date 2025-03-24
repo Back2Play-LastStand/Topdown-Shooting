@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private PlayerInput m_playerInput;
-    private PlayerMovement m_playerMovement;
-    [SerializeField] private PlayerAim m_playerAim;
-    private PlayerShoot m_playerShoot;
+    protected PlayerInput m_playerInput;
+    protected PlayerMovement m_playerMovement;
+    [SerializeField] protected PlayerAim m_playerAim;
+    protected PlayerShoot m_playerShoot;
 
-    void Awake()
+    protected void Awake()
     {
         Managers manager = Managers.Instance;
         m_playerInput = GetComponent<PlayerInput>();
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
         m_playerShoot = GetComponent<PlayerShoot>();
     }
 
-    void Update()
+    protected void Update()
     {
         m_playerMovement.Move(m_playerInput.InputVec);
         m_playerMovement.LookAtMouse(m_playerInput.MousePos);
