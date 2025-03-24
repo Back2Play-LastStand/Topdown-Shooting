@@ -19,9 +19,7 @@ public class PacketHandler
     public static void ResLeaveHandler(PacketSession session, IMessage packet)
     {
         RES_LEAVE leavePacket = packet as RES_LEAVE;
-        ServerSession serverSession = session as ServerSession;
-
-        Debug.Log("ResLeaveHandler");
+        Managers.Object.RemoveMyPlayer();
     }
     public static void ResEnterRoomHandler(PacketSession session, IMessage packet)
     {
@@ -32,18 +30,18 @@ public class PacketHandler
     }
     public static void ResSpawnHandler(PacketSession session, IMessage packet)
     {
-        RES_SPAWN enterRoomPacket = packet as RES_SPAWN;
+        RES_SPAWN spawnPacket = packet as RES_SPAWN;
         ServerSession serverSession = session as ServerSession;
 
         Debug.Log("ResSpawnHandler");
-        Debug.Log(enterRoomPacket.Player);
+        Managers.Object.Add(spawnPacket.Player, myPlayer: true);
     }
     public static void ResSpawnAllHandler(PacketSession session, IMessage packet)
     {
-        RES_SPAWN_ALL enterRoomPacket = packet as RES_SPAWN_ALL;
-        ServerSession serverSession = session as ServerSession;
-
-        Debug.Log("ResSpawnAllHandler");
-        Debug.Log(enterRoomPacket.Players);
+        RES_SPAWN_ALL spawnAllPacket = packet as RES_SPAWN_ALL;
+        foreach(ObjectInfo player in spawnAllPacket.Players)
+        {
+            Managers.Object.Add(player, myPlayer: false);
+        }
     }
 }
