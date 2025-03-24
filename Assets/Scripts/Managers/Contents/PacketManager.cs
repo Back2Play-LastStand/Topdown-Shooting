@@ -32,6 +32,14 @@ public class PacketManager : MonoBehaviour
     {
         _onRecv.Add((ushort)PacketId.PKT_RES_ENTER, MakePacket<Protocol.RES_ENTER>);
         _handler.Add((ushort)PacketId.PKT_RES_ENTER, PacketHandler.ResEnterHandler);
+        _onRecv.Add((ushort)PacketId.PKT_RES_LEAVE, MakePacket<Protocol.RES_LEAVE>);
+        _handler.Add((ushort)PacketId.PKT_RES_LEAVE, PacketHandler.ResLeaveHandler);
+        _onRecv.Add((ushort)PacketId.PKT_RES_ENTER_ROOM, MakePacket<Protocol.RES_ENTER_ROOM>);
+        _handler.Add((ushort)PacketId.PKT_RES_ENTER_ROOM, PacketHandler.ResEnterRoomHandler);
+        _onRecv.Add((ushort)PacketId.PKT_RES_SPAWN, MakePacket<Protocol.RES_SPAWN>);
+        _handler.Add((ushort)PacketId.PKT_RES_SPAWN, PacketHandler.ResSpawnHandler);
+        _onRecv.Add((ushort)PacketId.PKT_RES_SPAWN_ALL, MakePacket<Protocol.RES_SPAWN_ALL>);
+        _handler.Add((ushort)PacketId.PKT_RES_SPAWN_ALL, PacketHandler.ResSpawnAllHandler);
     }
 
     public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

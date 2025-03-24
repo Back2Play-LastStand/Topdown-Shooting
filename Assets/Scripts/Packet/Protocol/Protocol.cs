@@ -25,20 +25,21 @@ namespace Protocol {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg5Qcm90b2NvbC5wcm90bxIIUHJvdG9jb2waCkVudW0ucHJvdG8aDFN0cnVj",
-            "dC5wcm90byILCglSRVFfRU5URVIiQwoJUkVTX0VOVEVSEiUKB3BsYXllcnMY",
-            "ASADKAsyFC5Qcm90b2NvbC5PYmplY3RJbmZvEg8KB3N1Y2Nlc3MYAiABKAgi",
-            "EAoOUkVRX0VOVEVSX1JPT00iRwoOUkVTX0VOVEVSX1JPT00SJAoGcGxheWVy",
-            "GAEgASgLMhQuUHJvdG9jb2wuT2JqZWN0SW5mbxIPCgdzdWNjZXNzGAIgASgI",
-            "IgsKCVJFUV9MRUFWRSILCglSRVNfTEVBVkUiMQoJUkVTX1NQQVdOEiQKBnBs",
-            "YXllchgBIAEoCzIULlByb3RvY29sLk9iamVjdEluZm8iNgoNUkVTX1NQQVdO",
-            "X0FMTBIlCgdwbGF5ZXJzGAEgAygLMhQuUHJvdG9jb2wuT2JqZWN0SW5mbyIa",
-            "CgtSRVNfREVTUEFXThILCgNpZHMYASADKARiBnByb3RvMw=="));
+            "dC5wcm90byIZCglSRVFfRU5URVISDAoEbmFtZRgBIAEoCSJDCglSRVNfRU5U",
+            "RVISJQoHcGxheWVycxgBIAMoCzIULlByb3RvY29sLk9iamVjdEluZm8SDwoH",
+            "c3VjY2VzcxgCIAEoCCIeCg5SRVFfRU5URVJfUk9PTRIMCgRuYW1lGAEgASgJ",
+            "IkcKDlJFU19FTlRFUl9ST09NEiQKBnBsYXllchgBIAEoCzIULlByb3RvY29s",
+            "Lk9iamVjdEluZm8SDwoHc3VjY2VzcxgCIAEoCCILCglSRVFfTEVBVkUiCwoJ",
+            "UkVTX0xFQVZFIjEKCVJFU19TUEFXThIkCgZwbGF5ZXIYASABKAsyFC5Qcm90",
+            "b2NvbC5PYmplY3RJbmZvIjYKDVJFU19TUEFXTl9BTEwSJQoHcGxheWVycxgB",
+            "IAMoCzIULlByb3RvY29sLk9iamVjdEluZm8iGgoLUkVTX0RFU1BBV04SCwoD",
+            "aWRzGAEgAygEYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Protocol.EnumReflection.Descriptor, global::Protocol.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.REQ_ENTER), global::Protocol.REQ_ENTER.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.REQ_ENTER), global::Protocol.REQ_ENTER.Parser, new[]{ "Name" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_ENTER), global::Protocol.RES_ENTER.Parser, new[]{ "Players", "Success" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.REQ_ENTER_ROOM), global::Protocol.REQ_ENTER_ROOM.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.REQ_ENTER_ROOM), global::Protocol.REQ_ENTER_ROOM.Parser, new[]{ "Name" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_ENTER_ROOM), global::Protocol.RES_ENTER_ROOM.Parser, new[]{ "Player", "Success" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.REQ_LEAVE), global::Protocol.REQ_LEAVE.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_LEAVE), global::Protocol.RES_LEAVE.Parser, null, null, null, null, null),
@@ -85,6 +86,7 @@ namespace Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public REQ_ENTER(REQ_ENTER other) : this() {
+      name_ = other.name_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -92,6 +94,18 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public REQ_ENTER Clone() {
       return new REQ_ENTER(this);
+    }
+
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 1;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -109,6 +123,7 @@ namespace Protocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Name != other.Name) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -116,6 +131,7 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -134,6 +150,10 @@ namespace Protocol {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (Name.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Name);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -144,6 +164,10 @@ namespace Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Name.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Name);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -154,6 +178,9 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -165,6 +192,9 @@ namespace Protocol {
     public void MergeFrom(REQ_ENTER other) {
       if (other == null) {
         return;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -181,6 +211,10 @@ namespace Protocol {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 10: {
+            Name = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -196,6 +230,10 @@ namespace Protocol {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+          case 10: {
+            Name = input.ReadString();
+            break;
+          }
         }
       }
     }
@@ -452,6 +490,7 @@ namespace Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public REQ_ENTER_ROOM(REQ_ENTER_ROOM other) : this() {
+      name_ = other.name_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -459,6 +498,18 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public REQ_ENTER_ROOM Clone() {
       return new REQ_ENTER_ROOM(this);
+    }
+
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 1;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -476,6 +527,7 @@ namespace Protocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Name != other.Name) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -483,6 +535,7 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -501,6 +554,10 @@ namespace Protocol {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (Name.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Name);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -511,6 +568,10 @@ namespace Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Name.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Name);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -521,6 +582,9 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -532,6 +596,9 @@ namespace Protocol {
     public void MergeFrom(REQ_ENTER_ROOM other) {
       if (other == null) {
         return;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -548,6 +615,10 @@ namespace Protocol {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 10: {
+            Name = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -563,6 +634,10 @@ namespace Protocol {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+          case 10: {
+            Name = input.ReadString();
+            break;
+          }
         }
       }
     }
