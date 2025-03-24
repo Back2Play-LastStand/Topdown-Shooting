@@ -44,4 +44,16 @@ public class PacketHandler
             Managers.Object.Add(player, myPlayer: false);
         }
     }
+    public static void ResDespawnHandler(PacketSession session, IMessage packet)
+    {
+        RES_DESPAWN despawnPacket = packet as RES_DESPAWN;
+
+        Debug.Log("ResDespawnHandler");
+    }
+    public static void ResMoveHandler(PacketSession session, IMessage packet)
+    {
+        RES_MOVE movePacket = packet as RES_MOVE;
+
+        Debug.Log("ResMoveHandler");
+    }
 }
