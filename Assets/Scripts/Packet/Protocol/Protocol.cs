@@ -30,10 +30,10 @@ namespace Protocol {
             "dWNjZXNzGAIgASgIIh4KDlJFUV9FTlRFUl9ST09NEgwKBG5hbWUYASABKAki",
             "RwoOUkVTX0VOVEVSX1JPT00SJAoGcGxheWVyGAEgASgLMhQuUHJvdG9jb2wu",
             "T2JqZWN0SW5mbxIPCgdzdWNjZXNzGAIgASgIIgsKCVJFUV9MRUFWRSILCglS",
-            "RVNfTEVBVkUiMQoJUkVTX1NQQVdOEiQKBnBsYXllchgBIAEoCzIULlByb3Rv",
-            "Y29sLk9iamVjdEluZm8iNgoNUkVTX1NQQVdOX0FMTBIlCgdwbGF5ZXJzGAEg",
-            "AygLMhQuUHJvdG9jb2wuT2JqZWN0SW5mbyIaCgtSRVNfREVTUEFXThILCgNp",
-            "ZHMYASADKARiBnByb3RvMw=="));
+            "RVNfTEVBVkUiPwoJUkVTX1NQQVdOEiQKBnBsYXllchgBIAEoCzIULlByb3Rv",
+            "Y29sLk9iamVjdEluZm8SDAoEbWluZRgCIAEoCCI2Cg1SRVNfU1BBV05fQUxM",
+            "EiUKB3BsYXllcnMYASADKAsyFC5Qcm90b2NvbC5PYmplY3RJbmZvIhoKC1JF",
+            "U19ERVNQQVdOEgsKA2lkcxgBIAMoBGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Protocol.EnumReflection.Descriptor, global::Protocol.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -43,7 +43,7 @@ namespace Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_ENTER_ROOM), global::Protocol.RES_ENTER_ROOM.Parser, new[]{ "Player", "Success" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.REQ_LEAVE), global::Protocol.REQ_LEAVE.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_LEAVE), global::Protocol.RES_LEAVE.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_SPAWN), global::Protocol.RES_SPAWN.Parser, new[]{ "Player" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_SPAWN), global::Protocol.RES_SPAWN.Parser, new[]{ "Player", "Mine" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_SPAWN_ALL), global::Protocol.RES_SPAWN_ALL.Parser, new[]{ "Players" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_DESPAWN), global::Protocol.RES_DESPAWN.Parser, new[]{ "Ids" }, null, null, null, null)
           }));
@@ -1239,6 +1239,7 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public RES_SPAWN(RES_SPAWN other) : this() {
       player_ = other.player_ != null ? other.player_.Clone() : null;
+      mine_ = other.mine_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1260,6 +1261,18 @@ namespace Protocol {
       }
     }
 
+    /// <summary>Field number for the "mine" field.</summary>
+    public const int MineFieldNumber = 2;
+    private bool mine_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Mine {
+      get { return mine_; }
+      set {
+        mine_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1276,6 +1289,7 @@ namespace Protocol {
         return true;
       }
       if (!object.Equals(Player, other.Player)) return false;
+      if (Mine != other.Mine) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1284,6 +1298,7 @@ namespace Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (player_ != null) hash ^= Player.GetHashCode();
+      if (Mine != false) hash ^= Mine.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1306,6 +1321,10 @@ namespace Protocol {
         output.WriteRawTag(10);
         output.WriteMessage(Player);
       }
+      if (Mine != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Mine);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1320,6 +1339,10 @@ namespace Protocol {
         output.WriteRawTag(10);
         output.WriteMessage(Player);
       }
+      if (Mine != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Mine);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1332,6 +1355,9 @@ namespace Protocol {
       int size = 0;
       if (player_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Player);
+      }
+      if (Mine != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1350,6 +1376,9 @@ namespace Protocol {
           Player = new global::Protocol.ObjectInfo();
         }
         Player.MergeFrom(other.Player);
+      }
+      if (other.Mine != false) {
+        Mine = other.Mine;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1373,6 +1402,10 @@ namespace Protocol {
             input.ReadMessage(Player);
             break;
           }
+          case 16: {
+            Mine = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -1393,6 +1426,10 @@ namespace Protocol {
               Player = new global::Protocol.ObjectInfo();
             }
             input.ReadMessage(Player);
+            break;
+          }
+          case 16: {
+            Mine = input.ReadBool();
             break;
           }
         }
