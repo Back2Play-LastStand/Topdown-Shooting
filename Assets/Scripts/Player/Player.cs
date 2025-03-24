@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int Id { get; set; }
+    public ulong Id { get; set; }
     protected PlayerMovement m_playerMovement;
     protected PlayerAim m_playerAim;
     protected PlayerShoot m_playerShoot;
