@@ -9,9 +9,13 @@ using UnityEngine;
 
 namespace ServerCore
 {
-
     public class ServerSession : PacketSession
     {
+        private string[] nameList = {
+        "Axel", "Blaze", "Caden", "Derek", "Elias", "Finn", "Gage", "Hunter", "Ivy", "Jade",
+        "Kai", "Liam", "Maya", "Nina", "Oscar", "Piper", "Quinn", "Ryder", "Sage", "Tess"
+        };
+
         public override void OnConnected(EndPoint endPoint)
         {
             if (endPoint == null)
@@ -20,6 +24,9 @@ namespace ServerCore
             Debug.Log($"OnConnected : {endPoint}");
 
             Protocol.REQ_ENTER pkt = new();
+            System.Random random = new System.Random();
+            int index = random.Next(nameList.Length);
+            pkt.Name = nameList[index];
             Send(pkt, (ushort)PacketId.PKT_REQ_ENTER);
         }
 
