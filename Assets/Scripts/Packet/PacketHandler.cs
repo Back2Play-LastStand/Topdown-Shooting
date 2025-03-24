@@ -34,12 +34,12 @@ public class PacketHandler
         ServerSession serverSession = session as ServerSession;
 
         Debug.Log("ResSpawnHandler");
-        Managers.Object.Add(spawnPacket.Player, myPlayer: true);
+        Managers.Object.Add(spawnPacket.Player, myPlayer: spawnPacket.Mine);
     }
     public static void ResSpawnAllHandler(PacketSession session, IMessage packet)
     {
         RES_SPAWN_ALL spawnAllPacket = packet as RES_SPAWN_ALL;
-        foreach(ObjectInfo player in spawnAllPacket.Players)
+        foreach (ObjectInfo player in spawnAllPacket.Players)
         {
             Managers.Object.Add(player, myPlayer: false);
         }
