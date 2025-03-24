@@ -18,10 +18,12 @@ namespace ServerCore
 
         public override void OnConnected(EndPoint endPoint)
         {
-            if (endPoint == null)
-                return;
-
             Debug.Log($"OnConnected : {endPoint}");
+
+            Managers.Packet.CustomHandler = (s, m, i) =>
+            {
+                PacketQueue.Instance.Push(i, m);
+            };
 
             Protocol.REQ_ENTER pkt = new();
             System.Random random = new System.Random();
