@@ -16,6 +16,13 @@ public class Managers : MonoBehaviour
     public static PacketManager Packet { get {  return Instance._packet; } }
     public static ObjectManager Object { get {  return Instance._object; } }
     #endregion
+    #region Cores
+    PoolManager _pool = new();
+    ResourceManager _resource = new();
+
+    public static PoolManager Pool { get {  return Instance._pool; } }
+    public static ResourceManager Resource { get { return Instance._resource; } }
+    #endregion
 
     public static void Init()
     {
