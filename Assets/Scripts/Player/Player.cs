@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int Id { get; set; }
     protected PlayerMovement m_playerMovement;
     protected PlayerAim m_playerAim;
     protected PlayerShoot m_playerShoot;
 
     protected virtual void Awake()
     {
-        Managers manager = Managers.Instance;
         m_playerMovement = GetComponent<PlayerMovement>();
         m_playerShoot = GetComponent<PlayerShoot>();
         m_playerAim = GetComponent<PlayerAim>();
