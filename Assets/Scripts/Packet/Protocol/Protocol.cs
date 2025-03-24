@@ -25,20 +25,20 @@ namespace Protocol {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg5Qcm90b2NvbC5wcm90bxIIUHJvdG9jb2waCkVudW0ucHJvdG8aDFN0cnVj",
-            "dC5wcm90byIZCglSRVFfRU5URVISDAoEbmFtZRgBIAEoCSJDCglSRVNfRU5U",
-            "RVISJQoHcGxheWVycxgBIAMoCzIULlByb3RvY29sLk9iamVjdEluZm8SDwoH",
-            "c3VjY2VzcxgCIAEoCCIeCg5SRVFfRU5URVJfUk9PTRIMCgRuYW1lGAEgASgJ",
-            "IkcKDlJFU19FTlRFUl9ST09NEiQKBnBsYXllchgBIAEoCzIULlByb3RvY29s",
-            "Lk9iamVjdEluZm8SDwoHc3VjY2VzcxgCIAEoCCILCglSRVFfTEVBVkUiCwoJ",
-            "UkVTX0xFQVZFIjEKCVJFU19TUEFXThIkCgZwbGF5ZXIYASABKAsyFC5Qcm90",
-            "b2NvbC5PYmplY3RJbmZvIjYKDVJFU19TUEFXTl9BTEwSJQoHcGxheWVycxgB",
-            "IAMoCzIULlByb3RvY29sLk9iamVjdEluZm8iGgoLUkVTX0RFU1BBV04SCwoD",
-            "aWRzGAEgAygEYgZwcm90bzM="));
+            "dC5wcm90byIZCglSRVFfRU5URVISDAoEbmFtZRgBIAEoCSJCCglSRVNfRU5U",
+            "RVISJAoGcGxheWVyGAEgASgLMhQuUHJvdG9jb2wuT2JqZWN0SW5mbxIPCgdz",
+            "dWNjZXNzGAIgASgIIh4KDlJFUV9FTlRFUl9ST09NEgwKBG5hbWUYASABKAki",
+            "RwoOUkVTX0VOVEVSX1JPT00SJAoGcGxheWVyGAEgASgLMhQuUHJvdG9jb2wu",
+            "T2JqZWN0SW5mbxIPCgdzdWNjZXNzGAIgASgIIgsKCVJFUV9MRUFWRSILCglS",
+            "RVNfTEVBVkUiMQoJUkVTX1NQQVdOEiQKBnBsYXllchgBIAEoCzIULlByb3Rv",
+            "Y29sLk9iamVjdEluZm8iNgoNUkVTX1NQQVdOX0FMTBIlCgdwbGF5ZXJzGAEg",
+            "AygLMhQuUHJvdG9jb2wuT2JqZWN0SW5mbyIaCgtSRVNfREVTUEFXThILCgNp",
+            "ZHMYASADKARiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Protocol.EnumReflection.Descriptor, global::Protocol.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.REQ_ENTER), global::Protocol.REQ_ENTER.Parser, new[]{ "Name" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_ENTER), global::Protocol.RES_ENTER.Parser, new[]{ "Players", "Success" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_ENTER), global::Protocol.RES_ENTER.Parser, new[]{ "Player", "Success" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.REQ_ENTER_ROOM), global::Protocol.REQ_ENTER_ROOM.Parser, new[]{ "Name" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_ENTER_ROOM), global::Protocol.RES_ENTER_ROOM.Parser, new[]{ "Player", "Success" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.REQ_LEAVE), global::Protocol.REQ_LEAVE.Parser, null, null, null, null, null),
@@ -275,7 +275,7 @@ namespace Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public RES_ENTER(RES_ENTER other) : this() {
-      players_ = other.players_.Clone();
+      player_ = other.player_ != null ? other.player_.Clone() : null;
       success_ = other.success_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -286,15 +286,16 @@ namespace Protocol {
       return new RES_ENTER(this);
     }
 
-    /// <summary>Field number for the "players" field.</summary>
-    public const int PlayersFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Protocol.ObjectInfo> _repeated_players_codec
-        = pb::FieldCodec.ForMessage(10, global::Protocol.ObjectInfo.Parser);
-    private readonly pbc::RepeatedField<global::Protocol.ObjectInfo> players_ = new pbc::RepeatedField<global::Protocol.ObjectInfo>();
+    /// <summary>Field number for the "player" field.</summary>
+    public const int PlayerFieldNumber = 1;
+    private global::Protocol.ObjectInfo player_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::Protocol.ObjectInfo> Players {
-      get { return players_; }
+    public global::Protocol.ObjectInfo Player {
+      get { return player_; }
+      set {
+        player_ = value;
+      }
     }
 
     /// <summary>Field number for the "success" field.</summary>
@@ -324,7 +325,7 @@ namespace Protocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!players_.Equals(other.players_)) return false;
+      if (!object.Equals(Player, other.Player)) return false;
       if (Success != other.Success) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -333,7 +334,7 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= players_.GetHashCode();
+      if (player_ != null) hash ^= Player.GetHashCode();
       if (Success != false) hash ^= Success.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -353,7 +354,10 @@ namespace Protocol {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      players_.WriteTo(output, _repeated_players_codec);
+      if (player_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Player);
+      }
       if (Success != false) {
         output.WriteRawTag(16);
         output.WriteBool(Success);
@@ -368,7 +372,10 @@ namespace Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      players_.WriteTo(ref output, _repeated_players_codec);
+      if (player_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Player);
+      }
       if (Success != false) {
         output.WriteRawTag(16);
         output.WriteBool(Success);
@@ -383,7 +390,9 @@ namespace Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      size += players_.CalculateSize(_repeated_players_codec);
+      if (player_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Player);
+      }
       if (Success != false) {
         size += 1 + 1;
       }
@@ -399,7 +408,12 @@ namespace Protocol {
       if (other == null) {
         return;
       }
-      players_.Add(other.players_);
+      if (other.player_ != null) {
+        if (player_ == null) {
+          Player = new global::Protocol.ObjectInfo();
+        }
+        Player.MergeFrom(other.Player);
+      }
       if (other.Success != false) {
         Success = other.Success;
       }
@@ -419,7 +433,10 @@ namespace Protocol {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            players_.AddEntriesFrom(input, _repeated_players_codec);
+            if (player_ == null) {
+              Player = new global::Protocol.ObjectInfo();
+            }
+            input.ReadMessage(Player);
             break;
           }
           case 16: {
@@ -442,7 +459,10 @@ namespace Protocol {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            players_.AddEntriesFrom(ref input, _repeated_players_codec);
+            if (player_ == null) {
+              Player = new global::Protocol.ObjectInfo();
+            }
+            input.ReadMessage(Player);
             break;
           }
           case 16: {
