@@ -1,3 +1,4 @@
+using Protocol;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,20 +17,25 @@ public class Player : MonoBehaviour
         m_playerAim = GetComponent<PlayerAim>();
     }
 
-    public virtual void SetMovement(Vector3 movement)
+    public virtual void UpdateMovement(Vector3 movement)
     {
         m_playerMovement.Move(movement);
     }
 
-    public virtual void SetRotation(Vector3 lookAtPosition)
+    public virtual void UpdateRotation(Vector3 lookAtPosition)
     {
         m_playerMovement.LookAtMouse(lookAtPosition);
     }
 
-    public virtual void SetShoot(bool isShooting)
+    public virtual void Shoot(bool isShooting)
     {
         if (isShooting)
             m_playerShoot.Attack();
+    }
+
+    public virtual void UpdateAnim()
+    {
+        m_playerMovement.PlayAnim(new Vector2(PosInfo.PosX, PosInfo.PosY));
     }
 
     protected virtual void Update()
