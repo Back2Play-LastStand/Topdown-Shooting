@@ -48,4 +48,11 @@ public class ObjectManager
     {
         _objects.Remove(id);
     }
+
+    public GameObject FindById(ulong id)
+    {
+        GameObject go = null;
+        _objects.TryGetValue(id, out go);
+        return go;
+    }
 }
