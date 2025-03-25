@@ -18,6 +18,7 @@ public class ObjectManager
 
             MyPlayer = go.GetComponent<MyPlayer>();
             MyPlayer.Id = info.ObjectId;
+            MyPlayer.PosInfo = info.PosInfo;
         }
         else
         {
@@ -27,6 +28,7 @@ public class ObjectManager
 
             Player player = go.GetComponent<Player>();
             player.Id = info.ObjectId;
+            player.PosInfo = info.PosInfo;
         }
     }
     public void Add(ulong id, GameObject go)
