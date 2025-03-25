@@ -17,25 +17,29 @@ public class MyPlayer : Player
     {
         base.Update();
 
-        UpdateMovement(m_playerInput.InputVec);
+        UpdateMovement();
         UpdateAnim();
-        m_playerMovement.LookAtMouse(m_playerInput.MousePos);
+        UpdateRotation();
         m_playerAim.AimTowardsMouse(m_playerInput.MousePos);
 
         if (m_playerInput.MouseClick)
             m_playerShoot.Attack();
     }
 
-    public override void UpdateMovement(Vector3 movement)
+    protected override void UpdateMovement()
     {
-        m_playerMovement.Move(movement);
+        m_playerMovement.Move(m_playerInput.InputVec);
 
         REQ_MOVE move = new();
         move.Info = PosInfo;
         Managers.Network.Send(move, (ushort)PacketId.PKT_REQ_MOVE);
     }
+    protected override void UpdateRotation()
+    {
+        m_playerMovement.LookAtMouse(m_playerInput.MousePos);
+    }
 
-    public override void UpdateAnim()
+    protected override void UpdateAnim()
     {
         m_playerMovement.PlayAnim(m_playerInput.InputVec);
     }
