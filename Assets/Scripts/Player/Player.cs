@@ -49,13 +49,10 @@ public class Player : MonoBehaviour
 
     protected virtual void UpdateRotation()
     {
-        m_playerMovement.LookAtMouse(VectorPos);
     }
-
-    protected virtual void Shoot(bool isShooting)
+    protected virtual void UpdateAttack()
     {
-        if (isShooting)
-            m_playerShoot.Attack();
+        m_playerShoot.Attack();
     }
 
     protected virtual void UpdateAnim()

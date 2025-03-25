@@ -23,7 +23,7 @@ public class MyPlayer : Player
         m_playerAim.AimTowardsMouse(m_playerInput.MousePos);
 
         if (m_playerInput.MouseClick)
-            m_playerShoot.Attack();
+            UpdateAttack();
     }
 
     protected override void UpdateMovement()
@@ -37,6 +37,10 @@ public class MyPlayer : Player
     protected override void UpdateRotation()
     {
         m_playerMovement.LookAtMouse(m_playerInput.MousePos);
+    }
+    protected override void UpdateAttack()
+    {
+        m_playerShoot.Attack();
     }
 
     protected override void UpdateAnim()
