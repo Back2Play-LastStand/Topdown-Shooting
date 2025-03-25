@@ -24,15 +24,16 @@ namespace Protocol {
     static StructReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgxTdHJ1Y3QucHJvdG8SCFByb3RvY29sIiwKCk9iamVjdEluZm8SEAoIb2Jq",
-            "ZWN0SWQYASABKAQSDAoEbmFtZRgCIAEoCSJQCgxQb3NpdGlvbkluZm8SDAoE",
-            "cG9zWBgBIAEoBRIMCgRwb3NZGAIgASgFEiQKCG1vdXNlUG9zGAMgASgLMhIu",
-            "UHJvdG9jb2wuTW91c2VQb3MiJgoITW91c2VQb3MSDAoEcG9zWBgBIAEoBRIM",
-            "CgRwb3NZGAIgASgFYgZwcm90bzM="));
+            "CgxTdHJ1Y3QucHJvdG8SCFByb3RvY29sIlUKCk9iamVjdEluZm8SEAoIb2Jq",
+            "ZWN0SWQYASABKAQSDAoEbmFtZRgCIAEoCRInCgdwb3NJbmZvGAMgASgLMhYu",
+            "UHJvdG9jb2wuUG9zaXRpb25JbmZvIlAKDFBvc2l0aW9uSW5mbxIMCgRwb3NY",
+            "GAEgASgFEgwKBHBvc1kYAiABKAUSJAoIbW91c2VQb3MYAyABKAsyEi5Qcm90",
+            "b2NvbC5Nb3VzZVBvcyImCghNb3VzZVBvcxIMCgRwb3NYGAEgASgFEgwKBHBv",
+            "c1kYAiABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.ObjectInfo), global::Protocol.ObjectInfo.Parser, new[]{ "ObjectId", "Name" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.ObjectInfo), global::Protocol.ObjectInfo.Parser, new[]{ "ObjectId", "Name", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.PositionInfo), global::Protocol.PositionInfo.Parser, new[]{ "PosX", "PosY", "MousePos" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.MousePos), global::Protocol.MousePos.Parser, new[]{ "PosX", "PosY" }, null, null, null, null)
           }));
@@ -77,6 +78,7 @@ namespace Protocol {
     public ObjectInfo(ObjectInfo other) : this() {
       objectId_ = other.objectId_;
       name_ = other.name_;
+      posInfo_ = other.posInfo_ != null ? other.posInfo_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -110,6 +112,18 @@ namespace Protocol {
       }
     }
 
+    /// <summary>Field number for the "posInfo" field.</summary>
+    public const int PosInfoFieldNumber = 3;
+    private global::Protocol.PositionInfo posInfo_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Protocol.PositionInfo PosInfo {
+      get { return posInfo_; }
+      set {
+        posInfo_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -127,6 +141,7 @@ namespace Protocol {
       }
       if (ObjectId != other.ObjectId) return false;
       if (Name != other.Name) return false;
+      if (!object.Equals(PosInfo, other.PosInfo)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -136,6 +151,7 @@ namespace Protocol {
       int hash = 1;
       if (ObjectId != 0UL) hash ^= ObjectId.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (posInfo_ != null) hash ^= PosInfo.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -162,6 +178,10 @@ namespace Protocol {
         output.WriteRawTag(18);
         output.WriteString(Name);
       }
+      if (posInfo_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(PosInfo);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -180,6 +200,10 @@ namespace Protocol {
         output.WriteRawTag(18);
         output.WriteString(Name);
       }
+      if (posInfo_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(PosInfo);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -195,6 +219,9 @@ namespace Protocol {
       }
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (posInfo_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(PosInfo);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -213,6 +240,12 @@ namespace Protocol {
       }
       if (other.Name.Length != 0) {
         Name = other.Name;
+      }
+      if (other.posInfo_ != null) {
+        if (posInfo_ == null) {
+          PosInfo = new global::Protocol.PositionInfo();
+        }
+        PosInfo.MergeFrom(other.PosInfo);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -237,6 +270,13 @@ namespace Protocol {
             Name = input.ReadString();
             break;
           }
+          case 26: {
+            if (posInfo_ == null) {
+              PosInfo = new global::Protocol.PositionInfo();
+            }
+            input.ReadMessage(PosInfo);
+            break;
+          }
         }
       }
     #endif
@@ -258,6 +298,13 @@ namespace Protocol {
           }
           case 18: {
             Name = input.ReadString();
+            break;
+          }
+          case 26: {
+            if (posInfo_ == null) {
+              PosInfo = new global::Protocol.PositionInfo();
+            }
+            input.ReadMessage(PosInfo);
             break;
           }
         }
