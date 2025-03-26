@@ -7,9 +7,9 @@ public class MyPlayer : Player
 {
     protected PlayerInput m_playerInput;
 
-    protected override void Awake()
+    protected override void Init()
     {
-        base.Awake();
+        base.Init();
         m_playerInput = GetComponent<PlayerInput>();
     }
 

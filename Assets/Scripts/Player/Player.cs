@@ -35,7 +35,12 @@ public class Player : MonoBehaviour
     protected PlayerAim m_playerAim;
     protected PlayerShoot m_playerShoot;
 
-    protected virtual void Awake()
+    protected virtual void Start()
+    {
+        Init();
+    }
+
+    protected virtual void Init()
     {
         m_playerMovement = GetComponent<PlayerMovement>();
         m_playerShoot = GetComponent<PlayerShoot>();
