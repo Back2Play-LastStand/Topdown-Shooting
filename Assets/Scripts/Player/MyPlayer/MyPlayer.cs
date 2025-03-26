@@ -30,9 +30,15 @@ public class MyPlayer : Player
     {
         m_playerMovement.Move(m_playerInput.InputVec);
 
-        REQ_MOVE move = new();
-        move.Info = PosInfo;
-        Managers.Network.Send(move, (ushort)PacketId.PKT_REQ_MOVE);
+        if (m_playerInput.InputVec != Vector2.zero)
+        {
+            PosInfo.PosX += (int)m_playerInput.InputVec.x;
+            PosInfo.PosY += (int)m_playerInput.InputVec.y;
+
+            REQ_MOVE move = new();
+            move.Info = PosInfo;
+            Managers.Network.Send(move, (ushort)PacketId.PKT_REQ_MOVE);
+        }
     }
     protected override void UpdateRotation()
     {
