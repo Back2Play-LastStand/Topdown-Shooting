@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
                 return;
 
             _positionInfo = value;
-            UpdateAnim();
+            //UpdateAnim();
         }
     }
 
@@ -62,7 +62,8 @@ public class Player : MonoBehaviour
 
     protected virtual void UpdateAnim()
     {
-        m_playerMovement.PlayAnim(new Vector2(PosInfo.PosX, PosInfo.PosY));
+        //m_playerMovement.PlayAnim(new Vector2(PosInfo.PosX, PosInfo.PosY));
+        //m_playerMovement.PlayAnim(VectorPos);
     }
 
     protected virtual void Update()
