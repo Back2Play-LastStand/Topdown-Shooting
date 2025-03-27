@@ -27,25 +27,46 @@ public class MyPlayer : Player
 
     protected override void UpdateMovement()
     {
-        m_playerMovement.Move(m_playerInput.InputVec);
+        Vector2 vec = m_playerInput.InputVec;
+        m_playerMovement.Move(vec);
 
         if (m_playerInput.InputVec != Vector2.zero)
         {
-            PosInfo.PosX += (int)m_playerInput.InputVec.x;
-            PosInfo.PosY += (int)m_playerInput.InputVec.y;
+            PosInfo.PosX += (int)vec.x;
+            PosInfo.PosY += (int)vec.y;
 
             REQ_MOVE move = new();
             move.Info = PosInfo;
             Managers.Network.Send(move, (ushort)PacketId.PKT_REQ_MOVE);
         }
     }
-
+    protected override void UpdateRotation()
+    {
+        Vector2 vec = m_playerInput.InputVec;
+        if (vec != Vector2.zero)
+        {
+            Vector3 lookDir = new Vector3(vec.x, 0, vec.y);
+            transform.rotation = Quaternion.LookRotation(lookDir);
+        }
+    }
     protected override void UpdateAttack()
     {
         m_playerShoot.Attack();
     }
     protected override void UpdateAnim()
     {
-        m_playerMovement.PlayAnim(m_playerInput.InputVec);
+        Vector2 inputVec = m_playerInput.InputVec;
+
+        if (inputVec == Vector2.zero)
+        {
+            m_playerMovement.PlayAnim(Vector2.zero);
+            return;
+        }
+
+        Vector3 worldDir = new Vector3(inputVec.x, 0, inputVec.y);
+        Vector3 localDir = transform.InverseTransformDirection(worldDir);
+        Vector2 animDir = new Vector2(localDir.x, localDir.z);
+
+        m_playerMovement.PlayAnim(animDir);
     }
 }

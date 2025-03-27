@@ -20,8 +20,6 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement, IPlayerAnim
     public void Move(Vector2 inputVec)
     {
         Vector3 moveVec = new Vector3(inputVec.x, 0, inputVec.y);
-        moveVec = transform.TransformDirection(moveVec);
-
         transform.position += moveVec * m_speed * Time.deltaTime;
     }
 
