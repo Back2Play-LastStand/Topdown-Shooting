@@ -54,13 +54,11 @@ public class PacketHandler
     {
         RES_MOVE movePacket = packet as RES_MOVE;
 
-        Debug.Log("ResMoveHandler");
-
         GameObject go = Managers.Object.FindById(movePacket.Player.ObjectId);
         if (go == null) return;
-
         Player player = go.GetComponent<Player>();
-        if(player == null) return;
+        if (player == null) return;
+        Debug.Log("ResMoveHandler");
 
         player.PosInfo = movePacket.Player.PosInfo;
     }
