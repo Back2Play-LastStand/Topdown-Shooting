@@ -30,26 +30,6 @@ public class PlayerMovement : MonoBehaviour, IPlayerMovement, IPlayerAnim
         // TODO
     }
 
-    public void LookAtMouse(Vector2 inputMousePos)
-    {
-        Ray ray = Camera.main.ScreenPointToRay(inputMousePos);
-        Plane groundPlane = new Plane(Vector3.up, transform.position);
-
-        if (groundPlane.Raycast(ray, out float enter))
-        {
-            Vector3 hitPoint = ray.GetPoint(enter);
-            Vector3 direction = (hitPoint - transform.position).normalized;
-
-            direction.y = 0;
-
-            if (direction != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = targetRotation;
-            }
-        }
-    }
-
     public void PlayAnim(Vector2 inputVec)
     {
         m_anim.SetFloat("Forward", inputVec.y);

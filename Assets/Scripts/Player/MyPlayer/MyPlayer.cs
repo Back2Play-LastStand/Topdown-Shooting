@@ -20,7 +20,6 @@ public class MyPlayer : Player
         UpdateMovement();
         UpdateAnim();
         UpdateRotation();
-        m_playerAim.AimTowardsMouse(m_playerInput.MousePos);
 
         if (m_playerInput.MouseClick)
             UpdateAttack();
@@ -40,15 +39,11 @@ public class MyPlayer : Player
             Managers.Network.Send(move, (ushort)PacketId.PKT_REQ_MOVE);
         }
     }
-    protected override void UpdateRotation()
-    {
-        m_playerMovement.LookAtMouse(m_playerInput.MousePos);
-    }
+
     protected override void UpdateAttack()
     {
         m_playerShoot.Attack();
     }
-
     protected override void UpdateAnim()
     {
         m_playerMovement.PlayAnim(m_playerInput.InputVec);

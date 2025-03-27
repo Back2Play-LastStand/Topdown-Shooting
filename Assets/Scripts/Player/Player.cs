@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
     }
 
     protected PlayerMovement m_playerMovement;
-    protected PlayerAim m_playerAim;
     protected PlayerShoot m_playerShoot;
 
     protected virtual void Start()
@@ -44,14 +43,12 @@ public class Player : MonoBehaviour
     {
         m_playerMovement = GetComponent<PlayerMovement>();
         m_playerShoot = GetComponent<PlayerShoot>();
-        m_playerAim = GetComponent<PlayerAim>();
     }
 
     protected virtual void UpdateMovement()
     {
         m_playerMovement.Move(VectorPos);
     }
-
     protected virtual void UpdateRotation()
     {
     }
@@ -59,7 +56,6 @@ public class Player : MonoBehaviour
     {
         m_playerShoot.Attack();
     }
-
     protected virtual void UpdateAnim()
     {
         //m_playerMovement.PlayAnim(new Vector2(PosInfo.PosX, PosInfo.PosY));
