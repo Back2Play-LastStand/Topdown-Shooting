@@ -51,6 +51,12 @@ public class Player : MonoBehaviour
     }
     protected virtual void UpdateRotation()
     {
+        Vector2 vec = VectorPos;
+        if (vec != Vector2.zero)
+        {
+            Vector3 lookDir = new Vector3(vec.x, 0, vec.y);
+            transform.rotation = Quaternion.LookRotation(lookDir);
+        }
     }
     protected virtual void UpdateAttack()
     {
