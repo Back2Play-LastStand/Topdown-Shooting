@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
         get { return new Vector2(PosInfo.PosX, PosInfo.PosY); }
         set
         {
-            PosInfo.PosX = (int)value.x;
-            PosInfo.PosY = (int)value.y;
+            PosInfo.PosX = value.x;
+            PosInfo.PosY = value.y;
         }
     }
 
