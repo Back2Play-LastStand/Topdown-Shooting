@@ -33,11 +33,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    protected MoveDir _lastDir = MoveDir.Down;
+    public MoveDir Dir
+    {
+        get { return PosInfo.MoveDir; }
+        set
+        {
+            if (PosInfo.MoveDir == value)
+                return;
+
+            PosInfo.MoveDir = value;
+            if (value != MoveDir.None)
+                _lastDir = value;
+        }
+    }
+
     protected PlayerMovement m_playerMovement;
     protected PlayerShoot m_playerShoot;
 
     protected Vector3 _destPos;
-    protected Vector3 _prevPos;
 
     protected virtual void Start()
     {
@@ -85,31 +99,33 @@ public class Player : MonoBehaviour
     {
         m_playerShoot.Attack();
     }
-    float lastMoveTime = 0f;
     protected virtual void UpdateAnim()
     {
         if (m_playerMovement == null) return;
 
-        Vector3 moveVector = (transform.position - _prevPos) / Time.deltaTime;
-        Vector3 localMoveVector = transform.InverseTransformDirection(moveVector);
-        Vector2 animVec = new(localMoveVector.x, localMoveVector.z);
-
-        float speed = animVec.magnitude;
-
-        if (speed > 0.1f)
+        switch (Dir)
         {
-            lastMoveTime = Time.time;
+            case MoveDir.Up:
+                m_playerMovement.PlayAnim(new Vector2(0, 1));
+                Debug.Log("Move Up");
+                break;
+            case MoveDir.Down:
+                m_playerMovement.PlayAnim(new Vector2(0, -1));
+                Debug.Log("Move Down");
+                break;
+            case MoveDir.Left:
+                m_playerMovement.PlayAnim(new Vector2(-1, 0));
+                Debug.Log("Move Left");
+                break;
+            case MoveDir.Right:
+                m_playerMovement.PlayAnim(new Vector2(1, 0));
+                Debug.Log("Move Right");
+                break;
+            default:
+                m_playerMovement.PlayAnim(Vector2.zero);
+                Debug.Log("Move None");
+                break;
         }
-        else
-        {
-            if (Time.time - lastMoveTime < 0.2f)
-                animVec = Vector2.Lerp(animVec, Vector2.zero, Time.deltaTime * 5f);
-            else
-                animVec = Vector2.zero;
-        }
-
-        m_playerMovement.PlayAnim(animVec);
-        _prevPos = transform.position;
     }
 
     protected virtual void Update()
