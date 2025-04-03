@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
         get { return new Vector3(PosInfo.PosX, transform.position.y, PosInfo.PosY); }
         set
         {
+            if (PosInfo.PosX == value.x && PosInfo.PosY == value.y)
+                return;
+
             PosInfo.PosX = value.x;
             PosInfo.PosY = value.z;
         }
