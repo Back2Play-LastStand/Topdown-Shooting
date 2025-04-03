@@ -91,11 +91,12 @@ public class Player : MonoBehaviour
     }
     protected virtual void UpdateRotation()
     {
-        Vector2 vec = VectorPos;
-        if (vec != Vector2.zero)
+        Vector3 moveDir = _destPos - transform.position;
+
+        if(moveDir.sqrMagnitude > 0.001f)
         {
-            Vector3 lookDir = new Vector3(vec.x, 0, vec.y);
-            transform.rotation = Quaternion.LookRotation(lookDir);
+            moveDir.y = 0;
+            transform.rotation = Quaternion.LookRotation(moveDir);
         }
     }
     protected virtual void UpdateAttack()
@@ -134,5 +135,6 @@ public class Player : MonoBehaviour
     protected virtual void Update()
     {
         UpdateMovement();
+        UpdateRotation();
     }
 }
