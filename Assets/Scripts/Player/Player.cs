@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     protected PlayerShoot m_playerShoot;
 
     protected Vector3 _destPos;
+    protected Vector3 _prevPos;
 
     protected virtual void Start()
     {
@@ -68,6 +69,8 @@ public class Player : MonoBehaviour
                 transform.position += moveDir.normalized * moveStep;
             }
         }
+
+        UpdateAnim();
     }
     protected virtual void UpdateRotation()
     {
@@ -82,10 +85,31 @@ public class Player : MonoBehaviour
     {
         m_playerShoot.Attack();
     }
+    float lastMoveTime = 0f;
     protected virtual void UpdateAnim()
     {
-        //m_playerMovement.PlayAnim(new Vector2(PosInfo.PosX, PosInfo.PosY));
-        //m_playerMovement.PlayAnim(VectorPos);
+        if (m_playerMovement == null) return;
+
+        Vector3 moveVector = (transform.position - _prevPos) / Time.deltaTime;
+        Vector3 localMoveVector = transform.InverseTransformDirection(moveVector);
+        Vector2 animVec = new(localMoveVector.x, localMoveVector.z);
+
+        float speed = animVec.magnitude;
+
+        if (speed > 0.1f)
+        {
+            lastMoveTime = Time.time;
+        }
+        else
+        {
+            if (Time.time - lastMoveTime < 0.2f)
+                animVec = Vector2.Lerp(animVec, Vector2.zero, Time.deltaTime * 5f);
+            else
+                animVec = Vector2.zero;
+        }
+
+        m_playerMovement.PlayAnim(animVec);
+        _prevPos = transform.position;
     }
 
     protected virtual void Update()
