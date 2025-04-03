@@ -91,13 +91,6 @@ public class Player : MonoBehaviour
     }
     protected virtual void UpdateRotation()
     {
-        Vector3 moveDir = _destPos - transform.position;
-
-        if(moveDir.sqrMagnitude > 0.001f)
-        {
-            moveDir.y = 0;
-            transform.rotation = Quaternion.LookRotation(moveDir);
-        }
     }
     protected virtual void UpdateAttack()
     {
@@ -111,18 +104,22 @@ public class Player : MonoBehaviour
         {
             case MoveDir.Up:
                 m_playerMovement.PlayAnim(new Vector2(0, 1));
+                transform.rotation = Quaternion.Euler(0, 0, 0);
                 Debug.Log("Move Up");
                 break;
             case MoveDir.Down:
                 m_playerMovement.PlayAnim(new Vector2(0, -1));
+                transform.rotation = Quaternion.Euler(0, 180, 0);
                 Debug.Log("Move Down");
                 break;
             case MoveDir.Left:
                 m_playerMovement.PlayAnim(new Vector2(-1, 0));
+                transform.rotation = Quaternion.Euler(0, -90, 0);
                 Debug.Log("Move Left");
                 break;
             case MoveDir.Right:
                 m_playerMovement.PlayAnim(new Vector2(1, 0));
+                transform.rotation = Quaternion.Euler(0, 90, 0);
                 Debug.Log("Move Right");
                 break;
             default:
@@ -135,6 +132,5 @@ public class Player : MonoBehaviour
     protected virtual void Update()
     {
         UpdateMovement();
-        UpdateRotation();
     }
 }

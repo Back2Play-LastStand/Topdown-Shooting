@@ -18,6 +18,7 @@ public class MyPlayer : Player
         base.Update();
 
         UpdateAnim();
+        UpdateRotation();
 
         if (m_playerInput.MouseClick)
             UpdateAttack();
