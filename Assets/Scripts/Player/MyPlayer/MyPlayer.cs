@@ -74,7 +74,7 @@ public class MyPlayer : Player
     }
     protected override void UpdateAttack()
     {
-        m_playerShoot.Attack();
+        base.UpdateAttack();
     }
     protected override void UpdateAnim()
     {
