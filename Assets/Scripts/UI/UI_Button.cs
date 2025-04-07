@@ -16,10 +16,15 @@ public class UI_Button : MonoBehaviour
     {
     }
 
+    enum GameObjects
+    {
+    }
+
     private void Start()
     {
         Bind<Button>(typeof(Buttons));
         Bind<Text>(typeof(Texts));
+        Bind<GameObject>(typeof(GameObjects));
     }
 
     void Bind<T>(Type type) where T : UnityEngine.Object
@@ -28,9 +33,15 @@ public class UI_Button : MonoBehaviour
         UnityEngine.Object[] objects = new UnityEngine.Object[names.Length];
         m_objects.Add(typeof(T), objects);
 
-        for(int i = 0; i < names.Length; i++)
+        for (int i = 0; i < names.Length; i++)
         {
-            objects[i] = Util.FindChild<T>(gameObject, names[i], true);
+            if (typeof(T) == typeof(GameObject))
+                objects[i] = Util.FindChild(gameObject, names[i], true);
+            else
+                objects[i] = Util.FindChild<T>(gameObject, names[i], true);
+
+            if (objects[i] == null)
+                Debug.Log($"Failed to Bind: {names[i]}");
         }
     }
 
