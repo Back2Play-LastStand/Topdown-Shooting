@@ -33,4 +33,13 @@ public class UI_Button : MonoBehaviour
             objects[i] = Util.FindChild<T>(gameObject, names[i], true);
         }
     }
+
+    T Get<T>(int idx) where T : UnityEngine.Object
+    {
+        UnityEngine.Object[] objects = null;
+        if (m_objects.TryGetValue(typeof(T), out objects) == false)
+            return null;
+
+        return objects[idx] as T;
+    }
 }
