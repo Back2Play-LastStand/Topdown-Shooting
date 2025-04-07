@@ -53,4 +53,8 @@ public class UI_Button : MonoBehaviour
 
         return objects[idx] as T;
     }
+
+    Button GetButton(int idx) { return Get<Button>(idx); }
+    Text GetText(int idx) { return Get<Text>(idx); }
+    Image GetImage(int idx) { return Get<Image>(idx); }
 }
