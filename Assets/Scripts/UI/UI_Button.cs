@@ -19,12 +19,15 @@ public class UI_Button : UI_Base
     {
     }
 
+    enum Images
+    {
+    }
+
     private void Start()
     {
         Bind<Button>(typeof(Buttons));
         Bind<Text>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
+        Bind<Image>(typeof(Images));
     }
-
-
 }
