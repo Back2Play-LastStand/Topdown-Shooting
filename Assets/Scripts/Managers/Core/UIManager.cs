@@ -8,6 +8,23 @@ public class UIManager
 
     Stack<UI_Popup> m_popupStack = new();
 
+    public void SetCanvas(GameObject go, bool sort = true)
+    {
+        var canvas = Util.GetOrAddComponent<Canvas>(go);
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvas.overrideSorting = true;
+
+        if (sort)
+        {
+            canvas.sortingOrder = m_order;
+            m_order++;
+        }
+        else
+        {
+            canvas.sortingOrder = 0;
+        }
+    }
+
     public T ShowPopupUI<T>(string name = null) where T : UI_Popup
     {
         if (string.IsNullOrEmpty(name))
