@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Button : MonoBehaviour
 {
+    Dictionary<Type, UnityEngine.Object[]> m_objects = new();
+
     enum Buttons
     {
     }
@@ -14,10 +18,19 @@ public class UI_Button : MonoBehaviour
 
     private void Start()
     {
-        Bind();
+        Bind<Button>(typeof(Buttons));
+        Bind<Text>(typeof(Texts));
     }
 
-    void Bind()
+    void Bind<T>(Type type) where T : UnityEngine.Object
     {
+        string[] names = Enum.GetNames(type);
+        UnityEngine.Object[] objects = new UnityEngine.Object[names.Length];
+        m_objects.Add(typeof(T), objects);
+
+        for(int i = 0; i < names.Length; i++)
+        {
+            objects[i] = Util.FindChild<T>(gameObject, names[i], true);
+        }
     }
 }
