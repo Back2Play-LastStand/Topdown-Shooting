@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_Button : UI_Base
@@ -21,6 +22,7 @@ public class UI_Button : UI_Base
 
     enum Images
     {
+        ItemIcon,
     }
 
     private void Start()
@@ -29,5 +31,8 @@ public class UI_Button : UI_Base
         Bind<Text>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
         Bind<Image>(typeof(Images));
+
+        GameObject go = GetImage((int)Images.ItemIcon).gameObject;
+        AddUIEvent(go, (PointerEventData data) => { go.transform.position = data.position; }, Define.UIEvent.Drag);
     }
 }
