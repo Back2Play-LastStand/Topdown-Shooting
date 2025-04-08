@@ -10,6 +10,11 @@ public class UI_Interface : UI_Scene
         GunImage,
     }
 
+    enum Texts
+    {
+        AmmoText,
+    }
+
     private void Start()
     {
         Init();
@@ -20,7 +25,13 @@ public class UI_Interface : UI_Scene
         base.Init();
 
         Bind<Image>(typeof(Images));
+        Bind<Text>(typeof(Texts));
 
         GetImage((int)Images.GunImage);
+    }
+
+    public void SetRemainAmmoText(int ammo)
+    {
+        GetText((int)Texts.AmmoText).GetComponent<Text>().text = ammo.ToString();
     }
 }
