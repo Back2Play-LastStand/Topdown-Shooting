@@ -8,6 +8,7 @@ public class UI_Interface : UI_Scene
     enum Images
     {
         GunImage,
+        MinimapImage,
     }
 
     enum Texts
@@ -28,6 +29,7 @@ public class UI_Interface : UI_Scene
         Bind<Text>(typeof(Texts));
 
         GetImage((int)Images.GunImage);
+        GetImage((int)Images.MinimapImage);
     }
 
     public void SetRemainAmmoText(int ammo)
