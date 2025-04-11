@@ -41,7 +41,7 @@ public class UI_Interface : UI_Scene
         GetImage((int)Images.MinimapImage);
         RawImage minimap = Get<RawImage>((int)RawImages.Minimap);
 
-        m_target.position = Managers.Object.MyPlayer.transform.position;
+        m_target = Managers.Object.MyPlayer.transform;
         GameObject go = Managers.Resource.Instantiate("MinimapCamera");
         m_minimapCamera = go.GetComponent<Camera>();
         RenderTexture rt = new RenderTexture(256, 256, 16);
