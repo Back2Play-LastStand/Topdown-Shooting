@@ -62,4 +62,8 @@ public class PacketHandler
 
         player.PosInfo = movePacket.Player.PosInfo;
     }
+    public static void ResSpawnMonsterHandler(PacketSession session, IMessage packet)
+    {
+        RES_SPAWN_MONSTER spawnMonsterPacket = packet as RES_SPAWN_MONSTER;
+    }
 }
