@@ -70,4 +70,12 @@ public class PacketHandler
             Managers.Object.AddMonster(monster);
         }
     }
+    public static void ResMoveMonsterHandler(PacketSession session, IMessage packet)
+    {
+        RES_MOVE_MONSTER movePacket = packet as RES_MOVE_MONSTER;
+    }
+    public static void ResAttackMonsterHandler(PacketSession session, IMessage packet)
+    {
+        RES_ATTACK_MONSTER attackPacket = packet as RES_ATTACK_MONSTER;
+    }
 }
