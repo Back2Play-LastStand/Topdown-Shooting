@@ -6,6 +6,7 @@ using UnityEngine;
 public class Creature : MonoBehaviour
 {
     public ulong Id { get; set; }
+    public uint Hp { get; set; }
 
     PositionInfo _positionInfo = new PositionInfo();
     public PositionInfo PosInfo
