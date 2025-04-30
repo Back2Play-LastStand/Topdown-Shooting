@@ -81,9 +81,11 @@ public class PacketHandler
         GameObject attacker = Managers.Object.FindById(attackPacket.Attacker.ObjectId);
         GameObject target = Managers.Object.FindById(attackPacket.Target.ObjectId);
 
-        Creature player = target.GetComponent<Creature>();
+        Player player = target.GetComponent<Player>();
         if (player == null) return;
-        Creature enemy = attacker.GetComponent<Creature>();
+        Monster enemy = attacker.GetComponent<Monster>();
         if (enemy == null) return;
+
+        enemy.AttackPlayer(player);
     }
 }
