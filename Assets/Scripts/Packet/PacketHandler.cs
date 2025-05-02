@@ -73,6 +73,13 @@ public class PacketHandler
     public static void ResMoveMonsterHandler(PacketSession session, IMessage packet)
     {
         RES_MOVE_MONSTER movePacket = packet as RES_MOVE_MONSTER;
+
+        GameObject go = Managers.Object.FindById(movePacket.Monster.ObjectId);
+        if (go == null) return;
+        Monster monster = go.GetComponent<Monster>();
+        if (monster == null) return;
+
+        monster.PosInfo = movePacket.Monster.PosInfo;
     }
     public static void ResAttackMonsterHandler(PacketSession session, IMessage packet)
     {
