@@ -81,18 +81,8 @@ public class PacketHandler
 
         monster.PosInfo = movePacket.Monster.PosInfo;
     }
-    public static void ResAttackMonsterHandler(PacketSession session, IMessage packet)
+    public static void ResAttackObjectHandler(PacketSession session, IMessage packet)
     {
-        RES_ATTACK_MONSTER attackPacket = packet as RES_ATTACK_MONSTER;
-
-        GameObject attacker = Managers.Object.FindById(attackPacket.Attacker.ObjectId);
-        GameObject target = Managers.Object.FindById(attackPacket.Target.ObjectId);
-
-        Player player = target.GetComponent<Player>();
-        if (player == null) return;
-        Monster enemy = attacker.GetComponent<Monster>();
-        if (enemy == null) return;
-
-        enemy.AttackPlayer(player);
+        RES_ATTACK_OBJECT attackPacket = packet as RES_ATTACK_OBJECT;
     }
 }
