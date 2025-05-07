@@ -19,11 +19,11 @@ public class SelectorNode : INode
             {
                 case INode.STATE.SUCCESS:
                     return INode.STATE.SUCCESS;
-                case INode.STATE.RUN:
-                    return INode.STATE.RUN;
+                case INode.STATE.RUNNING:
+                    return INode.STATE.RUNNING;
             }
         }
 
-        return INode.STATE.FAILED;
+        return INode.STATE.FAILURE;
     }
 }

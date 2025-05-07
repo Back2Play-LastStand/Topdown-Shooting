@@ -14,7 +14,7 @@ public class SequenceNode : INode
     public INode.STATE Evaluate()
     {
         if (children.Count <= 0)
-            return INode.STATE.FAILED;
+            return INode.STATE.FAILURE;
 
         foreach (INode child in children)
         {
@@ -23,10 +23,10 @@ public class SequenceNode : INode
             {
                 case INode.STATE.SUCCESS:
                     continue;
-                case INode.STATE.RUN:
-                    return INode.STATE.RUN;
-                case INode.STATE.FAILED:
-                    return INode.STATE.FAILED;
+                case INode.STATE.RUNNING:
+                    return INode.STATE.RUNNING;
+                case INode.STATE.FAILURE:
+                    return INode.STATE.FAILURE;
             }
         }
 
