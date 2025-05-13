@@ -38,6 +38,11 @@ public class EnemyAI : MonoBehaviour
         rootNode.Add(idleAction);
     }
 
+    void Update()
+    {
+        rootNode.Evaluate();
+    }
+
     INode.STATE Attack()
     {
         Debug.Log("°ø°ÝÁß");
@@ -98,4 +103,13 @@ public class EnemyAI : MonoBehaviour
         else
             return INode.STATE.FAILURE;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectiveRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
 }
