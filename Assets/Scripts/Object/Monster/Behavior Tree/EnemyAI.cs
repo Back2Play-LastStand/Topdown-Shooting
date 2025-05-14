@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     ActionNode idleAction;
     ActionNode returnAction;
     Transform target;
+    public LayerMask detectionLayer;
 
     Vector3 originPos;
 
@@ -57,7 +58,7 @@ public class EnemyAI : MonoBehaviour
             Debug.Log("공격 범위 감지 됨");
             return INode.STATE.SUCCESS;
         }
-        
+
         return INode.STATE.FAILURE;
     }
 
@@ -75,12 +76,18 @@ public class EnemyAI : MonoBehaviour
     }
     INode.STATE CheckInDetectiveRange()
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, detectiveRange, 1 << 8);
+        Collider[] cols = Physics.OverlapSphere(transform.position, detectiveRange, detectionLayer);
         if (cols.Length > 0)
         {
             Debug.Log("Detective..");
-            target = cols[0].transform;
-            return INode.STATE.SUCCESS;
+            foreach (Collider col in cols)
+            {
+                if (col.GetComponent<Player>() != null)
+                {
+                    target = col.transform;
+                    return INode.STATE.SUCCESS;
+                }
+            }
         }
 
         return INode.STATE.FAILURE;
