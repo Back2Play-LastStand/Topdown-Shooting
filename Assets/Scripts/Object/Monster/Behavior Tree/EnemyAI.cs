@@ -49,6 +49,14 @@ public class EnemyAI : Monster
     INode.STATE Attack()
     {
         Debug.Log("°ø°ÝÁß");
+
+        Protocol.REQ_ATTACK_OBJECT attack = new()
+        {
+            ObjectId = target.GetComponent<Player>().Id,
+            Damage = Amount
+        };
+        Managers.Network.Send(attack, (ushort)PacketId.PKT_REQ_ATTACK_OBJECT);
+
         return INode.STATE.RUNNING;
     }
     INode.STATE CheckInAttackRange()
