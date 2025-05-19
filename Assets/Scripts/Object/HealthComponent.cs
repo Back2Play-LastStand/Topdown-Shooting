@@ -20,4 +20,8 @@ public class HealthComponent : MonoBehaviour, IDamageReceiver
     {
         Health -= damage.Amount;
     }
+    public void SetHealth(uint health)
+    {
+        Health = health;
+    }
 }
