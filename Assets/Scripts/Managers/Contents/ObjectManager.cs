@@ -71,4 +71,10 @@ public class ObjectManager
         _objects.TryGetValue(id, out go);
         return go;
     }
+    public GameObject FindByMonsterId(ulong id)
+    {
+        GameObject go = null;
+        _monsters.TryGetValue(id, out go);
+        return go;
+    }
 }
