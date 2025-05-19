@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : Monster
 {
     public int detectiveRange;
     public int attackRange;
@@ -17,8 +17,10 @@ public class EnemyAI : MonoBehaviour
 
     Vector3 originPos;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         originPos = transform.position;
 
         attackSequence = new SequenceNode();

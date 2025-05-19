@@ -11,7 +11,7 @@ public class HealthComponent : MonoBehaviour, IDamageReceiver
         get; protected set;
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
         Health = startHealth;
     }
