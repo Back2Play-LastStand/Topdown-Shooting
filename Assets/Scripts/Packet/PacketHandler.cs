@@ -85,6 +85,8 @@ public class PacketHandler
     {
         RES_ATTACK_OBJECT attackPacket = packet as RES_ATTACK_OBJECT;
 
+        Debug.Log("ResAttackObjectHandler");
+
         GameObject attacker = Managers.Object.FindById(attackPacket.Attacker);
         GameObject go = Managers.Object.FindById(attackPacket.ObjectId);
         if (go == null) return;

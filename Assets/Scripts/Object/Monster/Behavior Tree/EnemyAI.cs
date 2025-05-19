@@ -50,6 +50,7 @@ public class EnemyAI : Monster
     {
         Debug.Log("°ø°ÝÁß");
 
+        Debug.Log($"Attacker: {Id}");
         Protocol.REQ_ATTACK_OBJECT attack = new()
         {
             Attacker = Id,
