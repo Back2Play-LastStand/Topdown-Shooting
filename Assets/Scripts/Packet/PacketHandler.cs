@@ -84,5 +84,15 @@ public class PacketHandler
     public static void ResAttackObjectHandler(PacketSession session, IMessage packet)
     {
         RES_ATTACK_OBJECT attackPacket = packet as RES_ATTACK_OBJECT;
+
+        GameObject attacker = Managers.Object.FindById(attackPacket.Attacker);
+        GameObject go = Managers.Object.FindById(attackPacket.ObjectId);
+        if (go == null) return;
+        Player player = go.GetComponent<Player>();
+        if (player == null) return;
+        Monster monster = attacker.GetComponent<Monster>();
+
+        monster.AttackPlayer(player);
+        Debug.Log($"remain HP: {player.Health}");
     }
 }

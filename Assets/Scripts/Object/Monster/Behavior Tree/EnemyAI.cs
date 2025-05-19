@@ -52,6 +52,7 @@ public class EnemyAI : Monster
 
         Protocol.REQ_ATTACK_OBJECT attack = new()
         {
+            Attacker = Id,
             ObjectId = target.GetComponent<Player>().Id,
             Damage = Amount
         };
