@@ -40,8 +40,9 @@ namespace Protocol {
             "UhImCghtb25zdGVycxgBIAMoCzIULlByb3RvY29sLk9iamVjdEluZm8iOQoQ",
             "UkVTX01PVkVfTU9OU1RFUhIlCgdtb25zdGVyGAEgASgLMhQuUHJvdG9jb2wu",
             "T2JqZWN0SW5mbyI1ChFSRVFfQVRUQUNLX09CSkVDVBIQCghvYmplY3RJZBgB",
-            "IAEoBBIOCgZkYW1hZ2UYAiABKA0iNQoRUkVTX0FUVEFDS19PQkpFQ1QSEAoI",
-            "b2JqZWN0SWQYASABKAQSDgoGZGFtYWdlGAIgASgNYgZwcm90bzM="));
+            "IAEoBBIOCgZkYW1hZ2UYAiABKA0iRwoRUkVTX0FUVEFDS19PQkpFQ1QSEAoI",
+            "b2JqZWN0SWQYASABKAQSDgoGZGFtYWdlGAIgASgNEhAKCHJlbWFpbkhwGAMg",
+            "ASgNYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Protocol.EnumReflection.Descriptor, global::Protocol.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -59,7 +60,7 @@ namespace Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_SPAWN_MONSTER), global::Protocol.RES_SPAWN_MONSTER.Parser, new[]{ "Monsters" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_MOVE_MONSTER), global::Protocol.RES_MOVE_MONSTER.Parser, new[]{ "Monster" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.REQ_ATTACK_OBJECT), global::Protocol.REQ_ATTACK_OBJECT.Parser, new[]{ "ObjectId", "Damage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_ATTACK_OBJECT), global::Protocol.RES_ATTACK_OBJECT.Parser, new[]{ "ObjectId", "Damage" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protocol.RES_ATTACK_OBJECT), global::Protocol.RES_ATTACK_OBJECT.Parser, new[]{ "ObjectId", "Damage", "RemainHp" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2891,6 +2892,7 @@ namespace Protocol {
     public RES_ATTACK_OBJECT(RES_ATTACK_OBJECT other) : this() {
       objectId_ = other.objectId_;
       damage_ = other.damage_;
+      remainHp_ = other.remainHp_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2924,6 +2926,18 @@ namespace Protocol {
       }
     }
 
+    /// <summary>Field number for the "remainHp" field.</summary>
+    public const int RemainHpFieldNumber = 3;
+    private uint remainHp_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint RemainHp {
+      get { return remainHp_; }
+      set {
+        remainHp_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2941,6 +2955,7 @@ namespace Protocol {
       }
       if (ObjectId != other.ObjectId) return false;
       if (Damage != other.Damage) return false;
+      if (RemainHp != other.RemainHp) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2950,6 +2965,7 @@ namespace Protocol {
       int hash = 1;
       if (ObjectId != 0UL) hash ^= ObjectId.GetHashCode();
       if (Damage != 0) hash ^= Damage.GetHashCode();
+      if (RemainHp != 0) hash ^= RemainHp.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2976,6 +2992,10 @@ namespace Protocol {
         output.WriteRawTag(16);
         output.WriteUInt32(Damage);
       }
+      if (RemainHp != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(RemainHp);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2994,6 +3014,10 @@ namespace Protocol {
         output.WriteRawTag(16);
         output.WriteUInt32(Damage);
       }
+      if (RemainHp != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(RemainHp);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3009,6 +3033,9 @@ namespace Protocol {
       }
       if (Damage != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Damage);
+      }
+      if (RemainHp != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RemainHp);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3027,6 +3054,9 @@ namespace Protocol {
       }
       if (other.Damage != 0) {
         Damage = other.Damage;
+      }
+      if (other.RemainHp != 0) {
+        RemainHp = other.RemainHp;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3051,6 +3081,10 @@ namespace Protocol {
             Damage = input.ReadUInt32();
             break;
           }
+          case 24: {
+            RemainHp = input.ReadUInt32();
+            break;
+          }
         }
       }
     #endif
@@ -3072,6 +3106,10 @@ namespace Protocol {
           }
           case 16: {
             Damage = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            RemainHp = input.ReadUInt32();
             break;
           }
         }
