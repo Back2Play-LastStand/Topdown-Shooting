@@ -48,6 +48,9 @@ public class EnemyAI : Monster
 
     INode.STATE Attack()
     {
+        if (target.GetComponent<Player>().Health <= 0)
+            return INode.STATE.FAILURE;
+
         Debug.Log("°ø°ÝÁß");
 
         Debug.Log($"Attacker: {Id}");
